@@ -1,0 +1,75 @@
+<%- include('header') %>
+
+<div class="page-header">
+    <div>
+        <h1>Messages <span>Inbox</span></h1>
+        <p class="page-subtitle">View inquiries and feedback sent through the website contact form.</p>
+    </div>
+</div>
+
+<% if (typeof success !== 'undefined' && success) { %>
+    <div class="alert alert-success">✅ <%= success %></div>
+<% } %>
+<% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-error">❌ <%= error %></div>
+<% } %>
+
+<div class="admin-table-wrap">
+    <div class="admin-table-header">
+        <h2>✉️ All Inquiries (<%= contacts ? contacts.length : 0 %>)</h2>
+    </div>
+
+    <% if (contacts && contacts.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Contact</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% contacts.forEach(c => { %>
+                <tr>
+                    <td><strong><%= c.name %></strong></td>
+                    <td>
+                        <small style="color: #aaa;">✉️ <%= c.email %></small>
+                        <% if (c.phone) { %>
+                            <br><small style="color: #888;">📞 <%= c.phone %></small>
+                        <% } %>
+                    </td>
+                    <td style="max-width: 300px;"><%= c.message %></td>
+                    <td>
+                        <span class="badge-status <%= c.isRead ? 'badge-success' : 'badge-warning' %>">
+                            <%= c.isRead ? 'Read' : 'New' %>
+                        </span>
+                    </td>
+                    <td><%= new Date(c.createdAt).toLocaleDateString() %></td>
+                    <td>
+                        <div class="action-btns">
+                            <% if (!c.isRead) { %>
+                                <form action="/admin/contacts/<%= c._id %>/read" method="POST">
+                                    <button type="submit" class="btn btn-sm btn-success">Mark Read</button>
+                                </form>
+                            <% } %>
+                            <form action="/admin/contacts/<%= c._id %>/delete" method="POST" onsubmit="return confirm('Delete this message?')">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } else { %>
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <p>No messages received yet.</p>
+        </div>
+    <% } %>
+</div>
+
+<%- include('footer') %>

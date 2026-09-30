@@ -1,0 +1,117 @@
+<%- include('header') %>
+
+<div class="page-header">
+    <div>
+        <h1>Dashboard <span>Overview</span></h1>
+        <p class="page-subtitle">Welcome back! Here's what's happening at Persian Darbar.</p>
+    </div>
+</div>
+
+<!-- STATS CARDS -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon">🍽️</div>
+        <div class="stat-value"><%= stats.totalMenuItems %></div>
+        <div class="stat-label">Total Menu Items (<%= stats.availableItems %> available)</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-value"><%= stats.totalReviews %></div>
+        <div class="stat-label">Total Reviews (<%= stats.pendingReviews %> pending)</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">✉️</div>
+        <div class="stat-value"><%= stats.totalContacts %></div>
+        <div class="stat-label">Total Messages (<%= stats.unreadContacts %> unread)</div>
+    </div>
+</div>
+
+
+<!-- RECENT MESSAGES -->
+<div class="admin-table-wrap">
+    <div class="admin-table-header">
+        <h2>✉️ Recent Messages</h2>
+        <a href="/admin/contacts" class="btn btn-ghost btn-sm">View All →</a>
+    </div>
+
+    <% if (recentContacts && recentContacts.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% recentContacts.forEach(c => { %>
+                <tr>
+                    <td><%= c.name %></td>
+                    <td><%= c.email %></td>
+                    <td><%= c.message.length > 60 ? c.message.substring(0, 60) + '...' : c.message %></td>
+                    <td>
+                        <span class="badge-status <%= c.isRead ? 'badge-success' : 'badge-warning' %>">
+                            <%= c.isRead ? 'Read' : 'Unread' %>
+                        </span>
+                    </td>
+                    <td><%= new Date(c.createdAt).toLocaleDateString() %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } else { %>
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <p>No messages yet</p>
+        </div>
+    <% } %>
+</div>
+
+
+<!-- RECENT REVIEWS -->
+<div class="admin-table-wrap">
+    <div class="admin-table-header">
+        <h2>⭐ Recent Reviews</h2>
+        <a href="/admin/reviews" class="btn btn-ghost btn-sm">View All →</a>
+    </div>
+
+    <% if (recentReviews && recentReviews.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Rating</th>
+                <th>Comment</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% recentReviews.forEach(r => { %>
+                <tr>
+                    <td><%= r.customerName %></td>
+                    <td><span class="stars"><%= '★'.repeat(r.rating) %><%= '☆'.repeat(5 - r.rating) %></span></td>
+                    <td><%= r.comment.length > 60 ? r.comment.substring(0, 60) + '...' : r.comment %></td>
+                    <td>
+                        <span class="badge-status <%= r.isApproved ? 'badge-success' : 'badge-warning' %>">
+                            <%= r.isApproved ? 'Approved' : 'Pending' %>
+                        </span>
+                    </td>
+                    <td><%= new Date(r.createdAt).toLocaleDateString() %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } else { %>
+        <div class="empty-state">
+            <div class="empty-icon">⭐</div>
+            <p>No reviews yet</p>
+        </div>
+    <% } %>
+</div>
+
+<%- include('footer') %>

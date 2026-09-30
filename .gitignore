@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment variables & secrets
+.env
+*/.env
+*.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Uploads / user files
+uploads/
+backend/uploads/
+
+# OS & IDE files
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json

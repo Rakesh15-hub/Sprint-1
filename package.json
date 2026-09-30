@@ -1,0 +1,10 @@
+{
+  "name": "persian-darbar",
+  "version": "1.0.0",
+  "description": "Persian Darbar Restaurant - Frontend and Backend",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "seed": "node backend/seed.js"
+  }
+}

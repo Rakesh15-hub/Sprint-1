@@ -1,0 +1,206 @@
+<%- include('header') %>
+
+<div class="page-header">
+    <div>
+        <h1>Menu <span>Management</span></h1>
+        <p class="page-subtitle">Add, edit, and manage your restaurant menu items.</p>
+    </div>
+</div>
+
+<% if (typeof success !== 'undefined' && success) { %>
+    <div class="alert alert-success">✅ <%= success %></div>
+<% } %>
+<% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-error">❌ <%= error %></div>
+<% } %>
+
+
+<!-- ADD NEW ITEM FORM -->
+<div class="admin-form">
+    <h2>➕ Add New Menu Item</h2>
+    <form action="/admin/menu" method="POST">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Item Name</label>
+                <input type="text" name="name" placeholder="e.g. Chicken Biryani" required>
+            </div>
+            <div class="form-group">
+                <label>Price (₹)</label>
+                <input type="number" name="price" placeholder="e.g. 399" min="0" required>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select name="category" required>
+                    <option value="starter">Starter</option>
+                    <option value="main-course">Main Course</option>
+                    <option value="dessert">Dessert</option>
+                    <option value="beverage">Beverage</option>
+                    <option value="pizza">Pizza</option>
+                    <option value="burger">Burger</option>
+                    <option value="pasta">Pasta</option>
+                    <option value="salad">Salad</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Image URL / Path</label>
+                <input type="text" name="image" placeholder="/images/paneer_tikka.jpg or https://...">
+            </div>
+            <div class="form-group full-width">
+                <label>Description</label>
+                <textarea name="description" placeholder="Describe the dish..." required></textarea>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Add Menu Item</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- MENU ITEMS TABLE -->
+<div class="admin-table-wrap">
+    <div class="admin-table-header">
+        <h2>🍽️ All Menu Items (<%= menuItems ? menuItems.length : 0 %>)</h2>
+    </div>
+
+    <% if (menuItems && menuItems.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% menuItems.forEach(item => { %>
+                <tr>
+                    <td><img src="<%= item.image || '/images/paneer_tikka.jpg' %>" alt="<%= item.name %>" class="table-img"></td>
+                    <td>
+                        <strong><%= item.name %></strong><br>
+                        <small style="color:#888;"><%= item.description.length > 50 ? item.description.substring(0, 50) + '...' : item.description %></small>
+                    </td>
+                    <td style="color:#d35400; font-weight:700;">₹<%= item.price %></td>
+                    <td><span class="badge-status badge-info"><%= item.category %></span></td>
+                    <td>
+                        <span class="badge-status <%= item.isAvailable ? 'badge-success' : 'badge-danger' %>">
+                            <%= item.isAvailable ? 'Available' : 'Unavailable' %>
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-btns">
+                            <form action="/admin/menu/<%= item._id %>/toggle" method="POST">
+                                <button type="submit" class="btn btn-sm <%= item.isAvailable ? 'btn-warning' : 'btn-success' %>">
+                                    <%= item.isAvailable ? 'Disable' : 'Enable' %>
+                                </button>
+                            </form>
+                            <button type="button" class="btn btn-sm btn-ghost"
+                                data-id="<%= item._id %>"
+                                data-name="<%= item.name %>"
+                                data-price="<%= item.price %>"
+                                data-category="<%= item.category %>"
+                                data-image="<%= item.image || '' %>"
+                                data-description="<%= item.description %>"
+                                onclick="openEditFromButton(this)">Edit</button>
+                            <form action="/admin/menu/<%= item._id %>/delete" method="POST" onsubmit="return confirm('Delete this menu item?')">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } else { %>
+        <div class="empty-state">
+            <div class="empty-icon">🍽️</div>
+            <p>No menu items yet. Add your first one above!</p>
+        </div>
+    <% } %>
+</div>
+
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="editModal">
+    <div class="modal">
+        <button type="button" class="modal-close" onclick="closeEditModal()">×</button>
+        <h2>✏️ Edit Menu Item</h2>
+        <form id="editForm" method="POST">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Item Name</label>
+                    <input type="text" name="name" id="editName" required>
+                </div>
+                <div class="form-group">
+                    <label>Price (₹)</label>
+                    <input type="number" name="price" id="editPrice" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" id="editCategory" required>
+                        <option value="starter">Starter</option>
+                        <option value="main-course">Main Course</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="beverage">Beverage</option>
+                        <option value="pizza">Pizza</option>
+                        <option value="burger">Burger</option>
+                        <option value="pasta">Pasta</option>
+                        <option value="salad">Salad</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Image URL / Path</label>
+                    <input type="text" name="image" id="editImage">
+                </div>
+                <div class="form-group full-width">
+                    <label>Description</label>
+                    <textarea name="description" id="editDescription" required></textarea>
+                </div>
+                <input type="hidden" name="isAvailable" value="true">
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-ghost" onclick="closeEditModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function openEditFromButton(btn) {
+    const item = {
+        _id: btn.getAttribute('data-id'),
+        name: btn.getAttribute('data-name'),
+        price: btn.getAttribute('data-price'),
+        description: btn.getAttribute('data-description'),
+        image: btn.getAttribute('data-image'),
+        category: btn.getAttribute('data-category')
+    };
+    openEditModal(item);
+}
+
+function openEditModal(item) {
+    document.getElementById('editForm').action = '/admin/menu/' + item._id + '/update';
+    document.getElementById('editName').value = item.name || '';
+    document.getElementById('editPrice').value = item.price || 0;
+    document.getElementById('editDescription').value = item.description || '';
+    document.getElementById('editImage').value = item.image || '';
+    document.getElementById('editCategory').value = item.category || 'other';
+    document.getElementById('editModal').classList.add('active');
+}
+
+function closeEditModal() {
+    document.getElementById('editModal').classList.remove('active');
+}
+
+document.getElementById('editModal').addEventListener('click', function(e) {
+    if (e.target === this) closeEditModal();
+});
+</script>
+
+<%- include('footer') %>

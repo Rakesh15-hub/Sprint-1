@@ -1,0 +1,96 @@
+<%- include('header') %>
+
+<div class="page-header">
+    <div>
+        <h1>Orders <span>Management</span></h1>
+        <p class="page-subtitle">Track incoming online delivery orders and update status in real time.</p>
+    </div>
+</div>
+
+<% if (typeof success !== 'undefined' && success) { %>
+    <div class="alert alert-success">✅ <%= success %></div>
+<% } %>
+<% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-error">❌ <%= error %></div>
+<% } %>
+
+<!-- ORDERS TABLE -->
+<div class="admin-table-wrap">
+    <div class="admin-table-header">
+        <h2>🛍️ All Orders (<%= orders.length %>)</h2>
+    </div>
+
+    <% if (orders && orders.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Order #</th>
+                <th>Customer Details</th>
+                <th>Ordered Items</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% orders.forEach(order => { %>
+                <tr>
+                    <td>
+                        <strong style="color:#d35400; font-size:15px;"><%= order.orderNumber || order._id.toString().substring(0,8) %></strong><br>
+                        <small style="color:#888;"><%= new Date(order.createdAt).toLocaleDateString() %> <%= new Date(order.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) %></small>
+                    </td>
+                    <td>
+                        <strong><%= order.customer ? order.customer.name : 'Customer' %></strong><br>
+                        <small style="color:#aaa;">📞 <%= order.customer ? order.customer.phone : 'N/A' %></small><br>
+                        <small style="color:#888; font-size:12px; display:inline-block; max-width:200px;">📍 <%= order.customer ? order.customer.address : 'N/A' %></small>
+                        <% if (order.specialInstructions) { %>
+                            <br><small style="color:#e67e22; font-style:italic;">💬 <%= order.specialInstructions %></small>
+                        <% } %>
+                    </td>
+                    <td>
+                        <div style="font-size:13px; color:#ddd; line-height:1.6;">
+                            <% (order.items || []).forEach(it => { %>
+                                <div>• <%= it.name %> <strong style="color:#ff9850">x<%= it.quantity %></strong> (₹<%= it.price * it.quantity %>)</div>
+                            <% }) %>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="color:#2ecc71; font-weight:700; font-size:16px;">₹<%= order.totalAmount %></div>
+                        <small style="color:#888;">(Sub: ₹<%= order.subtotal %>)</small>
+                    </td>
+                    <td>
+                        <span class="badge-status badge-info"><%= (order.paymentMethod || 'cod').toUpperCase() %></span>
+                    </td>
+                    <td>
+                        <form action="/admin/orders/<%= order._id %>/status" method="POST" style="display:inline;">
+                            <select name="status" onchange="this.form.submit()" style="background:#1f2330; color:#fff; border:1px solid #3d4253; padding:7px 10px; border-radius:6px; font-size:13px; font-family:inherit; cursor:pointer;">
+                                <option value="pending" <%= order.status === 'pending' ? 'selected' : '' %>>⏳ Pending</option>
+                                <option value="confirmed" <%= order.status === 'confirmed' ? 'selected' : '' %>>✅ Confirmed</option>
+                                <option value="preparing" <%= order.status === 'preparing' ? 'selected' : '' %>>🍳 Preparing</option>
+                                <option value="out_for_delivery" <%= order.status === 'out_for_delivery' ? 'selected' : '' %>>🛵 Out for Delivery</option>
+                                <option value="delivered" <%= order.status === 'delivered' ? 'selected' : '' %>>🎉 Delivered</option>
+                                <option value="cancelled" <%= order.status === 'cancelled' ? 'selected' : '' %>>❌ Cancelled</option>
+                            </select>
+                        </form>
+                    </td>
+                    <td>
+                        <div class="action-btns">
+                            <form action="/admin/orders/<%= order._id %>/delete" method="POST" onsubmit="return confirm('Delete this order?')">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } else { %>
+        <div class="empty-state">
+            <div class="empty-icon">🛍️</div>
+            <p>No orders placed yet. Customer cart checkouts will appear here!</p>
+        </div>
+    <% } %>
+</div>
+
+<%- include('footer') %>

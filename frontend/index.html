@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Persian Darbar</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="container nav">
+
+            <div class="logo">
+                Persian Darbar<span>.</span>
+            </div>
+
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#menu">Menu</a>
+                <a href="#chef">Chef</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="nav-right" id="navRight">
+                <!-- Cart Button -->
+                <button class="nav-cart-btn" id="openCartBtn" onclick="openCart()">
+                    🛒 Cart <span class="cart-badge-count" id="navCartCount">0</span>
+                </button>
+
+                <!-- Shows when NOT logged in -->
+                <div class="auth-links" id="authLinks">
+                    <a href="/login.html" class="login-link">Login</a>
+                    <a href="/signup.html" class="book-btn">Sign Up</a>
+                </div>
+
+                <!-- Shows when logged in -->
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <span class="user-greeting" id="userGreeting">👋 Hi, User</span>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="welcome">
+                WELCOME TO PERSIAN DARBAR
+            </p>
+
+            <h1>
+                Delicious Food,
+                <br>
+                <span>Beautiful Moments.</span>
+            </h1>
+
+            <p class="hero-text">
+                Experience delicious food made with fresh ingredients,
+                passion and love.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#menu" class="main-btn">
+                    View Menu
+                </a>
+
+                <a href="#contact" class="outline-btn">
+                    Book a Table
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about section" id="about">
+
+        <div class="container about-container">
+
+            <div class="about-image">
+
+                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80"
+                    alt="Fresh food">
+
+            </div>
+
+
+            <div class="about-content">
+
+                <p class="section-label">
+                    ABOUT US
+                </p>
+
+                <h2>
+                    We Serve Food With
+                    <span>Love.</span>
+                </h2>
+
+                <p>
+                    At Persian Darbar, we believe that great food brings
+                    people together. Our chefs prepare every dish
+                    using fresh, high-quality ingredients.
+                </p>
+
+                <p>
+                    From delicious starters to mouth-watering
+                    desserts, every meal is prepared with care
+                    and passion.
+                </p>
+
+                <a href="#menu" class="main-btn">
+                    Explore Our Menu
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <section class="menu section" id="menu">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    OUR DELICIOUS MENU
+                </p>
+
+                <h2>
+                    Explore Our <span>Specialties</span>
+                </h2>
+
+                <p>
+                    From royal starters and aromatic main courses to delectable desserts,
+                    discover culinary masterpieces crafted with love.
+                </p>
+
+            </div>
+
+            <!-- CATEGORY FILTER TABS -->
+            <div class="menu-tabs" id="menuTabs">
+                <button class="menu-tab-btn active" data-category="all">
+                    <span>✨</span> All Dishes
+                </button>
+                <button class="menu-tab-btn" data-category="starter">
+                    <span>🥗</span> Starters
+                </button>
+                <button class="menu-tab-btn" data-category="main-course">
+                    <span>🍛</span> Main Course
+                </button>
+                <button class="menu-tab-btn" data-category="dessert">
+                    <span>🍰</span> Desserts
+                </button>
+                <button class="menu-tab-btn" data-category="beverage">
+                    <span>🍹</span> Beverages
+                </button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+
+                <!-- STARTER 1 -->
+                <div class="food-card">
+                    <div class="food-img-container">
+                        <img src="/images/paneer_tikka.jpg" alt="Paneer Tikka Angaare">
+                        <span class="food-badge badge-starter">Starter</span>
+                    </div>
+                    <div class="food-info">
+                        <div class="food-title">
+                            <h3>Paneer Tikka Angaare</h3>
+                            <span>₹349</span>
+                        </div>
+                        <p>Charcoal-grilled cottage cheese cubes marinated in spiced hung curd and fragrant Kashmiri chili.</p>
+                        <div class="food-footer">
+                            <a href="#contact" class="order-link">Order Now →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STARTER 2 -->
+                <div class="food-card">
+                    <div class="food-img-container">
+                        <img src="/images/mutton_galouti_kebab.jpg" alt="Mutton Galouti Kebab">
+                        <span class="food-badge badge-starter">Starter</span>
+                    </div>
+                    <div class="food-info">
+                        <div class="food-title">
+                            <h3>Mutton Galouti Kebab</h3>
+                            <span>₹499</span>
+                        </div>
+                        <p>Melt-in-your-mouth royal minced lamb kebabs infused with 16 royal spices and fresh mint dip.</p>
+                        <div class="food-footer">
+                            <a href="#contact" class="order-link">Order Now →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAIN COURSE 1 -->
+                <div class="food-card">
+                    <div class="food-img-container">
+                        <img src="/images/mutton_biryani.jpg" alt="Persian Special Mutton Biryani">
+                        <span class="food-badge badge-main-course">Main Course</span>
+                    </div>
+                    <div class="food-info">
+                        <div class="food-title">
+                            <h3>Persian Special Biryani</h3>
+                            <span>₹699</span>
+                        </div>
+                        <p>Slow-cooked fragrant aged basmati rice dum-cooked with tender spiced mutton shank and saffron.</p>
+                        <div class="food-footer">
+                            <a href="#contact" class="order-link">Order Now →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAIN COURSE 2 -->
+                <div class="food-card">
+                    <div class="food-img-container">
+                        <img src="/images/butter_chicken.jpg" alt="Royal Butter Chicken">
+                        <span class="food-badge badge-main-course">Main Course</span>
+                    </div>
+                    <div class="food-info">
+                        <div class="food-title">
+                            <h3>Royal Butter Chicken</h3>
+                            <span>₹479</span>
+                        </div>
+                        <p>Succulent tandoor roasted chicken in a rich, silky tomato gravy with butter and aromatic kasuri methi.</p>
+                        <div class="food-footer">
+                            <a href="#contact" class="order-link">Order Now →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DESSERT 1 -->
+                <div class="food-card">
+                    <div class="food-img-container">
+                        <img src="/images/shahi_tukda.jpg" alt="Shahi Tukda Royal">
+                        <span class="food-badge badge-dessert">Dessert</span>
+                    </div>
+                    <div class="food-info">
+                        <div class="food-title">
+                            <h3>Shahi Tukda Royal</h3>
+                            <span>₹249</span>
+                        </div>
+                        <p>Crispy ghee-fried bread soaked in fragrant saffron syrup, coated with thick rabri and pistachios.</p>
+                        <div class="food-footer">
+                            <a href="#contact" class="order-link">Order Now →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DESSERT 2 -->
+                <div class="food-card">
+                    <div class="food-img-container">
+                        <img src="/images/baklava.jpg" alt="Authentic Pistachio Baklava">
+                        <span class="food-badge badge-dessert">Dessert</span>
+                    </div>
+                    <div class="food-info">
+                        <div class="food-title">
+                            <h3>Authentic Baklava</h3>
+                            <span>₹299</span>
+                        </div>
+                        <p>Crisp, flaky filo pastry layered with chopped Iranian pistachios and sweetened with citrus honey.</p>
+                        <div class="food-footer">
+                            <a href="#contact" class="order-link">Order Now →</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features section">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    WHY CHOOSE US
+                </p>
+
+                <h2>
+                    We Make Your
+                    <span>Experience Special</span>
+                </h2>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🍴
+                    </div>
+
+                    <h3>
+                        Fresh Food
+                    </h3>
+
+                    <p>
+                        We use fresh and high-quality
+                        ingredients in every dish.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        👨‍🍳
+                    </div>
+
+                    <h3>
+                        Expert Chefs
+                    </h3>
+
+                    <p>
+                        Our experienced chefs prepare
+                        every dish with passion.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⭐
+                    </div>
+
+                    <h3>
+                        Best Quality
+                    </h3>
+
+                    <p>
+                        We focus on taste, quality and
+                        customer satisfaction.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🚚
+                    </div>
+
+                    <h3>
+                        Fast Service
+                    </h3>
+
+                    <p>
+                        Enjoy quick and friendly service
+                        every time you visit.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CHEF ================= -->
+
+    <section class="chef section" id="chef">
+
+        <div class="container chef-container">
+
+
+            <div class="chef-content">
+
+                <p class="section-label">
+                    OUR CHEF
+                </p>
+
+                <h2>
+                    Meet Our
+                    <span>Master Chef</span>
+                </h2>
+
+                <p>
+                    Our chef has years of experience creating
+                    delicious dishes inspired by Italian and
+                    modern cuisine.
+                </p>
+
+                <p>
+                    Every dish is carefully prepared to give
+                    you a memorable dining experience.
+                </p>
+
+                <h3>
+                    Chef Marco Rossi
+                </h3>
+
+                <p class="chef-role">
+                    Head Chef
+                </p>
+
+            </div>
+
+
+            <div class="chef-image">
+
+                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=900&q=80"
+                    alt="Restaurant Chef">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= REVIEWS ================= -->
+
+    <section class="reviews section" id="reviews">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    CUSTOMER REVIEWS
+                </p>
+
+                <h2>
+                    What Our Customers
+                    <span>Say</span>
+                </h2>
+
+            </div>
+
+
+            <div class="review-grid">
+
+
+                <div class="review">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "Amazing food and excellent service.
+                        The pizza was absolutely delicious!"
+                    </p>
+
+                    <h3>
+                        Rahul Sharma
+                    </h3>
+
+                </div>
+
+
+                <div class="review">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "Beautiful restaurant with great food.
+                        Definitely coming back again."
+                    </p>
+
+                    <h3>
+                        Priya Mehta
+                    </h3>
+
+                </div>
+
+
+                <div class="review">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The pasta was amazing and the staff
+                        was very friendly."
+                    </p>
+
+                    <h3>
+                        Arjun Patel
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section class="contact section" id="contact">
+
+        <div class="container contact-container">
+
+
+            <div class="contact-info">
+
+                <p class="section-label">
+                    CONTACT US
+                </p>
+
+                <h2>
+                    Let's
+                    <span>Meet</span>
+                </h2>
+
+                <p>
+                    Visit us and enjoy delicious food with
+                    your friends and family.
+                </p>
+
+
+                <div class="contact-details">
+
+                    <p>
+                        📍 123 Food Street, Mumbai, India
+                    </p>
+
+                    <p>
+                        📞 +91 98765 43210
+                    </p>
+
+                    <p>
+                        ✉️ hello@labella.com
+                    </p>
+
+                    <p>
+                        🕐 Mon - Sun: 11:00 AM - 11:00 PM
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form class="contact-form" id="contactForm">
+
+                <input type="text" name="name" placeholder="Your Name" required>
+
+                <input type="email" name="email" placeholder="Your Email" required>
+
+                <input type="text" name="phone" placeholder="Phone Number">
+
+                <textarea name="message" placeholder="Your Message" required></textarea>
+
+                <button type="submit" class="main-btn">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container footer-container">
+
+            <div>
+
+                <h2>
+                    Persian Darbar<span>.</span>
+                </h2>
+
+                <p>
+                    Delicious food. Beautiful moments.
+                </p>
+
+            </div>
+
+
+            <div class="social">
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+                <a href="#">
+                    Twitter
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Persian Darbar.
+            All Rights Reserved.
+            <span style="margin-left: 15px; opacity: 0.5;">|</span>
+            <a href="/admin" style="margin-left: 15px; color: #888; font-size: 13px; text-decoration: none; opacity: 0.6; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'; this.style.color='#d35400'" onmouseout="this.style.opacity='0.6'; this.style.color='#888'">Admin Login</a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Toast Notification -->
+    <div id="toast" style="
+        position: fixed; bottom: 30px; right: 30px;
+        padding: 16px 28px; border-radius: 10px;
+        font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+        color: white; z-index: 99999;
+        transform: translateY(100px); opacity: 0;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    "></div>
+
+    <!-- FLOATING CART BUTTON -->
+    <button class="floating-cart-btn" id="floatingCartBtn" onclick="openCart()">
+        <span>🛒</span>
+        <span id="floatingCartCount">0 items</span> • ₹<span id="floatingCartTotal">0</span>
+    </button>
+
+    <!-- CART DRAWER OVERLAY -->
+    <div class="cart-drawer-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+    <!-- CART DRAWER -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <h2>🛒 Your Order Cart (<span id="cartHeaderCount">0</span>)</h2>
+            <button class="cart-close-btn" onclick="closeCart()">✕</button>
+        </div>
+
+        <div class="cart-drawer-body" id="cartDrawerBody">
+            <!-- Rendered by JavaScript -->
+        </div>
+
+        <div class="cart-drawer-footer" id="cartDrawerFooter" style="display: none;">
+            <div class="cart-bill-row">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">₹0</span>
+            </div>
+            <div class="cart-bill-row">
+                <span>Delivery Fee</span>
+                <span id="cartDelivery">₹40</span>
+            </div>
+            <div class="cart-bill-row">
+                <span>Taxes & GST (5%)</span>
+                <span id="cartTax">₹0</span>
+            </div>
+            <div class="cart-bill-row total">
+                <span>Grand Total</span>
+                <span id="cartGrandTotal">₹0</span>
+            </div>
+            <button class="checkout-btn" onclick="openCheckout()">
+                Proceed to Checkout →
+            </button>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL OVERLAY -->
+    <div class="checkout-modal-overlay" id="checkoutModalOverlay">
+        <div class="checkout-modal">
+            <h2>🛍️ Complete Your Order</h2>
+            <p class="subtitle">Please provide your delivery details below.</p>
+
+            <form id="checkoutForm" onsubmit="handlePlaceOrder(event)">
+                <div class="checkout-form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="custName" placeholder="e.g. Ashish Singh" required>
+                </div>
+
+                <div class="checkout-form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="custPhone" placeholder="e.g. 9876543210" required>
+                </div>
+
+                <div class="checkout-form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="custEmail" placeholder="e.g. yourname@example.com">
+                </div>
+
+                <div class="checkout-form-group">
+                    <label>Delivery Address *</label>
+                    <textarea id="custAddress" rows="2" placeholder="House/Flat No., Street, Landmark, Area, City" required></textarea>
+                </div>
+
+                <div class="checkout-form-group">
+                    <label>Special Instructions (Optional)</label>
+                    <input type="text" id="custNotes" placeholder="e.g. Extra spicy, leave at the door">
+                </div>
+
+                <div class="checkout-form-group">
+                    <label>Payment Method</label>
+                    <div class="payment-options">
+                        <label class="payment-option-card active" onclick="selectPayment(this)">
+                            <input type="radio" name="paymentMethod" value="cod" checked>
+                            <span>💵 Cash on Delivery</span>
+                        </label>
+                        <label class="payment-option-card" onclick="selectPayment(this)">
+                            <input type="radio" name="paymentMethod" value="upi">
+                            <span>📱 UPI / QR Pay</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkout-modal-actions">
+                    <button type="button" class="btn-cancel-checkout" onclick="closeCheckout()">Cancel</button>
+                    <button type="submit" class="btn-confirm-order" id="placeOrderSubmitBtn">Place Order (₹<span id="checkoutTotalAmount">0</span>)</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ORDER SUCCESS MODAL OVERLAY -->
+    <div class="checkout-modal-overlay" id="orderSuccessOverlay">
+        <div class="checkout-modal order-success-modal">
+            <div class="order-success-icon">✓</div>
+            <h2>Order Placed Successfully!</h2>
+            <p class="subtitle" style="margin-bottom: 8px;">Thank you for dining with Persian Darbar.</p>
+            <div>
+                <span class="order-id-pill" id="successOrderNumber">Order ID: PD-1234</span>
+            </div>
+            <p style="font-size: 14.5px; color: #555; line-height: 1.6; margin-bottom: 24px;">
+                Your order is being prepared with fresh ingredients. Estimated delivery time is <strong>30–40 minutes</strong>.
+            </p>
+            <button class="checkout-btn" onclick="closeSuccessModal()">
+                Done & Continue Exploring
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // ==========================================
+        //  TOAST NOTIFICATION
+        // ==========================================
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = type === 'success'
+                ? 'linear-gradient(135deg, #2ecc71, #27ae60)'
+                : 'linear-gradient(135deg, #e74c3c, #c0392b)';
+            toast.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+
+            setTimeout(() => {
+                toast.style.transform = 'translateY(100px)';
+                toast.style.opacity = '0';
+            }, 3500);
+        }
+
+
+        // ==========================================
+        //  CART SYSTEM (LOCALSTORAGE & STATE)
+        // ==========================================
+
+        let cart = [];
+
+        function loadCartFromStorage() {
+            try {
+                const saved = localStorage.getItem('persian_darbar_cart');
+                if (saved) cart = JSON.parse(saved);
+            } catch (e) {
+                cart = [];
+            }
+            updateCartUI();
+        }
+
+        function saveCartToStorage() {
+            localStorage.setItem('persian_darbar_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function getCartItem(id) {
+            return cart.find(item => item.id === id);
+        }
+
+        function addToCart(id, name, price, image, category) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price: Number(price),
+                    image: image || '/images/paneer_tikka.jpg',
+                    category: category || 'other',
+                    quantity: 1
+                });
+            }
+            saveCartToStorage();
+            showToast(`🛒 Added "${name}" to your cart!`, 'success');
+        }
+
+        function updateCartQuantity(id, change) {
+            const index = cart.findIndex(item => item.id === id);
+            if (index === -1) return;
+
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            saveCartToStorage();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCartToStorage();
+            showToast('🗑️ Item removed from cart', 'success');
+        }
+
+        function clearCart() {
+            cart = [];
+            saveCartToStorage();
+        }
+
+        function openCart() {
+            document.getElementById('cartOverlay').classList.add('active');
+            document.getElementById('cartDrawer').classList.add('active');
+            renderCartDrawer();
+        }
+
+        function closeCart() {
+            document.getElementById('cartOverlay').classList.remove('active');
+            document.getElementById('cartDrawer').classList.remove('active');
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryFee = subtotal >= 500 || subtotal === 0 ? 0 : 40;
+            const tax = Math.round(subtotal * 0.05);
+            const grandTotal = subtotal > 0 ? (subtotal + deliveryFee + tax) : 0;
+
+            // Nav Badge
+            const navBadge = document.getElementById('navCartCount');
+            if (navBadge) navBadge.textContent = totalCount;
+
+            // Floating Button
+            const floatBtn = document.getElementById('floatingCartBtn');
+            const floatCount = document.getElementById('floatingCartCount');
+            const floatTotal = document.getElementById('floatingCartTotal');
+            if (floatBtn && floatCount && floatTotal) {
+                if (totalCount > 0) {
+                    floatBtn.style.display = 'inline-flex';
+                    floatCount.textContent = `${totalCount} ${totalCount === 1 ? 'item' : 'items'}`;
+                    floatTotal.textContent = grandTotal;
+                } else {
+                    floatBtn.style.display = 'none';
+                }
+            }
+
+            // Cart Header Count
+            const cartHeaderCount = document.getElementById('cartHeaderCount');
+            if (cartHeaderCount) cartHeaderCount.textContent = totalCount;
+
+            // Re-render menu cards buttons to reflect current cart state
+            if (allMenuItems && allMenuItems.length) {
+                renderMenu(activeCategory === 'all' ? allMenuItems : allMenuItems.filter(i => i.category === activeCategory));
+            }
+
+            renderCartDrawer();
+        }
+
+        function renderCartDrawer() {
+            const body = document.getElementById('cartDrawerBody');
+            const footer = document.getElementById('cartDrawerFooter');
+            if (!body) return;
+
+            if (!cart.length) {
+                body.innerHTML = `
+                    <div class="cart-empty-state">
+                        <div class="icon">🍽️</div>
+                        <h3>Your cart is empty</h3>
+                        <p>Explore our royal menu and add your favorite dishes!</p>
+                        <button class="add-to-cart-btn" onclick="closeCart(); location.href='#menu';">
+                            Explore Menu
+                        </button>
+                    </div>
+                `;
+                if (footer) footer.style.display = 'none';
+                return;
+            }
+
+            if (footer) footer.style.display = 'block';
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryFee = subtotal >= 500 ? 0 : 40;
+            const tax = Math.round(subtotal * 0.05);
+            const grandTotal = subtotal + deliveryFee + tax;
+
+            document.getElementById('cartSubtotal').textContent = `₹${subtotal}`;
+            document.getElementById('cartDelivery').textContent = deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`;
+            document.getElementById('cartTax').textContent = `₹${tax}`;
+            document.getElementById('cartGrandTotal').textContent = `₹${grandTotal}`;
+
+            body.innerHTML = cart.map(item => `
+                <div class="cart-item-row">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-thumb">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-unit-price">₹${item.price} each</div>
+                        <div class="cart-item-actions">
+                            <div class="cart-item-qty">
+                                <button onclick="updateCartQuantity('${item.id}', -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateCartQuantity('${item.id}', 1)">+</button>
+                            </div>
+                            <div class="cart-item-total">₹${item.price * item.quantity}</div>
+                            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" title="Remove">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+
+        // ==========================================
+        //  CHECKOUT & ORDER PLACEMENT
+        // ==========================================
+
+        function openCheckout() {
+            if (!cart.length) {
+                showToast('❌ Your cart is empty!', 'error');
+                return;
+            }
+            closeCart();
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryFee = subtotal >= 500 ? 0 : 40;
+            const tax = Math.round(subtotal * 0.05);
+            const grandTotal = subtotal + deliveryFee + tax;
+
+            document.getElementById('checkoutTotalAmount').textContent = grandTotal;
+            document.getElementById('checkoutModalOverlay').classList.add('active');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModalOverlay').classList.remove('active');
+        }
+
+        function selectPayment(element) {
+            document.querySelectorAll('.payment-option-card').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            element.querySelector('input[type="radio"]').checked = true;
+        }
+
+        async function handlePlaceOrder(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const email = document.getElementById('custEmail').value.trim() || 'guest@persiandarbar.com';
+            const address = document.getElementById('custAddress').value.trim();
+            const specialInstructions = document.getElementById('custNotes').value.trim();
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'cod';
+
+            const submitBtn = document.getElementById('placeOrderSubmitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Placing Order...';
+
+            const payload = {
+                customer: { name, phone, email, address },
+                items: cart.map(item => ({
+                    menuItemId: item.id.length === 24 ? item.id : undefined,
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity,
+                    image: item.image
+                })),
+                paymentMethod,
+                specialInstructions
+            };
+
+            try {
+                const res = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+
+                if (data.success && data.data) {
+                    closeCheckout();
+                    clearCart();
+                    document.getElementById('checkoutForm').reset();
+                    document.getElementById('successOrderNumber').textContent = `Order ID: ${data.data.orderNumber}`;
+                    document.getElementById('orderSuccessOverlay').classList.add('active');
+                } else {
+                    showToast('❌ ' + (data.message || 'Could not place order'), 'error');
+                }
+            } catch (err) {
+                showToast('❌ Failed to connect to server. Please try again.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Place Order';
+            }
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('orderSuccessOverlay').classList.remove('active');
+        }
+
+
+        // ==========================================
+        //  LOAD MENU ITEMS FROM API WITH FILTERING
+        // ==========================================
+
+        let allMenuItems = [];
+        let activeCategory = 'all';
+
+        function getCategoryLabel(cat) {
+            const labels = {
+                'starter': 'Starter',
+                'main-course': 'Main Course',
+                'dessert': 'Dessert',
+                'beverage': 'Beverage',
+                'pizza': 'Pizza',
+                'burger': 'Burger',
+                'pasta': 'Pasta',
+                'salad': 'Salad'
+            };
+            return labels[cat] || (cat ? cat.charAt(0).toUpperCase() + cat.slice(1) : 'Special');
+        }
+
+        function getBadgeClass(cat) {
+            if (cat === 'starter') return 'badge-starter';
+            if (cat === 'main-course') return 'badge-main-course';
+            if (cat === 'dessert') return 'badge-dessert';
+            if (cat === 'beverage') return 'badge-beverage';
+            return 'badge-starter';
+        }
+
+        function renderMenu(items) {
+            const menuGrid = document.getElementById('menuGrid');
+            if (!menuGrid) return;
+
+            if (!items.length) {
+                menuGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #777;">
+                        <p style="font-size: 18px;">No dishes found in this category.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            menuGrid.innerHTML = items.map(item => {
+                const itemId = item._id || item.id || item.name.replace(/\s+/g, '_');
+                const inCart = getCartItem(itemId);
+
+                let actionBtnHtml = '';
+                if (inCart) {
+                    actionBtnHtml = `
+                        <div class="card-qty-control">
+                            <button class="card-qty-btn" onclick="updateCartQuantity('${itemId}', -1)">-</button>
+                            <span class="card-qty-val">${inCart.quantity}</span>
+                            <button class="card-qty-btn" onclick="updateCartQuantity('${itemId}', 1)">+</button>
+                        </div>
+                    `;
+                } else {
+                    const safeName = item.name.replace(/'/g, "\\'");
+                    const safeImage = (item.image || '/images/paneer_tikka.jpg').replace(/'/g, "\\'");
+                    actionBtnHtml = `
+                        <button class="add-to-cart-btn" onclick="addToCart('${itemId}', '${safeName}', ${item.price}, '${safeImage}', '${item.category}')">
+                            <span>🛒</span> Add to Cart
+                        </button>
+                    `;
+                }
+
+                return `
+                    <div class="food-card" data-category="${item.category}">
+                        <div class="food-img-container">
+                            <img src="${item.image || '/images/paneer_tikka.jpg'}" alt="${item.name}" loading="lazy">
+                            <span class="food-badge ${getBadgeClass(item.category)}">${getCategoryLabel(item.category)}</span>
+                        </div>
+                        <div class="food-info">
+                            <div class="food-title">
+                                <h3>${item.name}</h3>
+                                <span>₹${item.price}</span>
+                            </div>
+                            <p>${item.description}</p>
+                            <div class="food-footer">
+                                ${actionBtnHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterMenu(category) {
+            activeCategory = category;
+            
+            // Update active tab buttons
+            document.querySelectorAll('.menu-tab-btn').forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            if (category === 'all') {
+                renderMenu(allMenuItems);
+            } else {
+                const filtered = allMenuItems.filter(item => item.category === category);
+                renderMenu(filtered);
+            }
+        }
+
+        async function loadMenu() {
+            try {
+                const res = await fetch('/api/menu');
+                const data = await res.json();
+
+                if (!data.success || !data.data.length) return;
+
+                allMenuItems = data.data;
+                renderMenu(allMenuItems);
+
+                // Setup tab event listeners
+                document.querySelectorAll('.menu-tab-btn').forEach(btn => {
+                    btn.onclick = () => filterMenu(btn.dataset.category);
+                });
+
+            } catch (err) {
+                console.log('Using static menu (API unavailable)');
+            }
+        }
+
+
+        // ==========================================
+        //  LOAD REVIEWS FROM API
+        // ==========================================
+
+        async function loadReviews() {
+            try {
+                const res = await fetch('/api/reviews');
+                const data = await res.json();
+
+                if (!data.success || !data.data.length) return;
+
+                const reviewGrid = document.querySelector('.review-grid');
+                if (!reviewGrid) return;
+
+                reviewGrid.innerHTML = data.data.map(review => `
+                    <div class="review">
+                        <div class="stars">
+                            ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+                        </div>
+                        <p>"${review.comment}"</p>
+                        <h3>${review.customerName}</h3>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                console.log('Using static reviews (API unavailable)');
+            }
+        }
+
+
+        // ==========================================
+        //  CONTACT FORM SUBMISSION
+        // ==========================================
+
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = {
+                    name: contactForm.querySelector('[name="name"]').value,
+                    email: contactForm.querySelector('[name="email"]').value,
+                    phone: contactForm.querySelector('[name="phone"]').value,
+                    message: contactForm.querySelector('[name="message"]').value
+                };
+
+                try {
+                    const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const data = await res.json();
+
+                    if (data.success) {
+                        showToast('✅ ' + data.message, 'success');
+                        contactForm.reset();
+                    } else {
+                        showToast('❌ ' + data.message, 'error');
+                    }
+                } catch (err) {
+                    showToast('❌ Could not send message. Please try again.', 'error');
+                }
+            });
+        }
+
+
+        // ==========================================
+        //  USER AUTH STATE
+        // ==========================================
+
+        async function checkAuth() {
+            try {
+                const res = await fetch('/auth/me');
+                const data = await res.json();
+
+                const authLinks = document.getElementById('authLinks');
+                const userMenu = document.getElementById('userMenu');
+                const userGreeting = document.getElementById('userGreeting');
+
+                if (data.loggedIn && data.user) {
+                    authLinks.style.display = 'none';
+                    userMenu.style.display = 'flex';
+                    userGreeting.textContent = '👋 Hi, ' + data.user.name.split(' ')[0];
+
+                    // Prefill checkout if available
+                    if (document.getElementById('custName')) document.getElementById('custName').value = data.user.name || '';
+                    if (document.getElementById('custEmail')) document.getElementById('custEmail').value = data.user.email || '';
+                    if (document.getElementById('custPhone')) document.getElementById('custPhone').value = data.user.phone || '';
+                } else {
+                    authLinks.style.display = 'flex';
+                    userMenu.style.display = 'none';
+                }
+            } catch (err) {
+                // API unavailable, show login/signup links
+            }
+        }
+
+        // Logout handler
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await fetch('/auth/logout', { method: 'POST' });
+                showToast('👋 Logged out successfully', 'success');
+                document.getElementById('authLinks').style.display = 'flex';
+                document.getElementById('userMenu').style.display = 'none';
+            } catch (err) {
+                showToast('❌ Logout failed', 'error');
+            }
+        });
+
+
+        // ==========================================
+        //  INITIALIZE
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+            loadMenu();
+            loadReviews();
+            checkAuth();
+        });
+    </script>
+
+</body>
+
+</html>

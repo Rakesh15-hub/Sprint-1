@@ -1,0 +1,74 @@
+<%- include('header') %>
+
+<div class="page-header">
+    <div>
+        <h1>Reviews <span>Management</span></h1>
+        <p class="page-subtitle">Moderate customer reviews before they appear on the website.</p>
+    </div>
+</div>
+
+<% if (typeof success !== 'undefined' && success) { %>
+    <div class="alert alert-success">✅ <%= success %></div>
+<% } %>
+<% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-error">❌ <%= error %></div>
+<% } %>
+
+<div class="admin-table-wrap">
+    <div class="admin-table-header">
+        <h2>⭐ All Reviews (<%= reviews ? reviews.length : 0 %>)</h2>
+    </div>
+
+    <% if (reviews && reviews.length > 0) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Rating</th>
+                <th>Comment</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% reviews.forEach(r => { %>
+                <tr>
+                    <td><strong><%= r.customerName %></strong></td>
+                    <td><span class="stars"><%= '★'.repeat(r.rating) %><%= '☆'.repeat(5 - r.rating) %></span></td>
+                    <td style="max-width: 320px;"><%= r.comment %></td>
+                    <td>
+                        <span class="badge-status <%= r.isApproved ? 'badge-success' : 'badge-warning' %>">
+                            <%= r.isApproved ? 'Approved' : 'Pending' %>
+                        </span>
+                    </td>
+                    <td><%= new Date(r.createdAt).toLocaleDateString() %></td>
+                    <td>
+                        <div class="action-btns">
+                            <% if (!r.isApproved) { %>
+                                <form action="/admin/reviews/<%= r._id %>/approve" method="POST">
+                                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                </form>
+                            <% } else { %>
+                                <form action="/admin/reviews/<%= r._id %>/reject" method="POST">
+                                    <button type="submit" class="btn btn-sm btn-warning">Hide</button>
+                                </form>
+                            <% } %>
+                            <form action="/admin/reviews/<%= r._id %>/delete" method="POST" onsubmit="return confirm('Delete this review?')">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <% } else { %>
+        <div class="empty-state">
+            <div class="empty-icon">⭐</div>
+            <p>No reviews submitted yet.</p>
+        </div>
+    <% } %>
+</div>
+
+<%- include('footer') %>
